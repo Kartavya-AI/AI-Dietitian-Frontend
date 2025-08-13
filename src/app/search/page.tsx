@@ -6,150 +6,139 @@ import VantaFog from "@/components/VantaFog";
 import { RainbowButton } from "@/components/magicui/rainbow-button";
 import { AuroraText } from "@/components/magicui/aurora-text";
 
-interface GTMResult {
-  strategy_overview: string;
-  market_analysis: string;
-  customer_profiles: string[];
-  value_proposition: string;
-  acquisition_channels: string[];
-  outreach_plan: string;
-  growth_initiatives: string[];
-  optimization_tips: string;
+const API_BASE = "https://dietitian-agent-977121587860.asia-south2.run.app";
+
+interface ChatMessage {
+  role: "user" | "assistant";
+  text: string;
 }
 
-export default function GTMStrategyPage() {
-  const [startupIdea, setStartupIdea] = useState<string>("");
-  const [targetMarket, setTargetMarket] = useState<string>("");
-  const [teamComposition, setTeamComposition] = useState<string>("");
+export default function DietitianChatPage() {
+  const [sessionId, setSessionId] = useState<string>("");
+  const [message, setMessage] = useState<string>("");
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const [result, setResult] = useState<GTMResult | null>(null);
   const [error, setError] = useState<string>("");
 
-  const handleGenerate = async () => {
-    setLoading(true);
+  const initSession = async () => {
     setError("");
-    setResult(null);
-
     try {
-      const response = await axios.post<{ data: string }>(
-        "https://enterpreneaur-977121587860.asia-south2.run.app/run-crew",
-        {
-          startup_idea: startupIdea,
-          target_market: targetMarket,
-          team_composition: teamComposition,
-        }
-      );
-
-      console.log("API Response:", response.data);
-
-      const raw = response.data.data;
-      const jsonStart = raw.indexOf("```json");
-      const jsonEnd = raw.lastIndexOf("```");
-      const extracted =
-        jsonStart !== -1 && jsonEnd !== -1
-          ? raw.substring(jsonStart + 7, jsonEnd)
-          : raw;
-
-      const parsed: GTMResult = JSON.parse(extracted);
-      setResult(parsed);
+      const res = await axios.post(`${API_BASE}/init-session`, {
+        session_id: crypto.randomUUID(),
+      });
+      setSessionId(res.data.session_id);
+      setMessages([]);
     } catch (err) {
       console.error(err);
-      setError("Failed to generate GTM strategy. Please try again.");
+      setError("Failed to start session.");
+    }
+  };
+
+  const sendMessage = async () => {
+    if (!message.trim() || !sessionId) return;
+    const userMsg: ChatMessage = { role: "user", text: message };
+    setMessages((prev) => [...prev, userMsg]);
+    setMessage("");
+    setLoading(true);
+
+    try {
+      const res = await axios.post(`${API_BASE}/chat`, {
+        message,
+        session_id: sessionId,
+      });
+      const botMsg: ChatMessage = { role: "assistant", text: res.data.response };
+      setMessages((prev) => [...prev, botMsg]);
+    } catch (err) {
+      console.error(err);
+      setError("Failed to send message.");
     } finally {
       setLoading(false);
     }
   };
 
+  const clearSession = async () => {
+    if (!sessionId) return;
+    try {
+      await axios.delete(`${API_BASE}/clear-session/${sessionId}`);
+      setSessionId("");
+      setMessages([]);
+    } catch (err) {
+      console.error(err);
+      setError("Failed to clear session.");
+    }
+  };
+
   return (
-    <div>
+    <div className="px-4 md:px-36">
       <VantaFog />
-      <div className="max-w-5xl mx-auto p-6 mt-10 space-y-6">
+      <div className="max-w-3xl  mt-10 space-y-6">
         <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-primary">
-          Generate Your <AuroraText>Go-To-Market</AuroraText> Strategy
+          Talk to Your <AuroraText>AI Dietitian</AuroraText>
         </h1>
         <p className="text-gray-600">
-          Empower your startup with a tailored GTM plan in minutes. Just provide a few
-          details about your idea, target audience, and team.
+          Start a dietitian chat session, ask questions, and get AI-powered nutrition advice.
         </p>
 
-        {/* Input Fields */}
-        <div className="grid grid-cols-1 gap-4 mt-8">
-          <input
-            type="text"
-            value={startupIdea}
-            onChange={(e) => setStartupIdea(e.target.value)}
-            className="p-4 border rounded-md"
-            placeholder="Startup Idea (e.g., AI-powered resume enhancer)"
-          />
-
-          <input
-            type="text"
-            value={targetMarket}
-            onChange={(e) => setTargetMarket(e.target.value)}
-            className="p-4 border rounded-md"
-            placeholder="Target Market (e.g., Recent graduates in tech)"
-          />
-
-          <input
-            type="text"
-            value={teamComposition}
-            onChange={(e) => setTeamComposition(e.target.value)}
-            className="p-4 border rounded-md"
-            placeholder="Team Composition (e.g., 3 engineers, 1 career coach)"
-          />
+        {/* Session Controls */}
+        <div className="flex gap-4 mt-6">
+          <button onClick={initSession} className="bg-black text-white px-4 py-2 rounded-lg">
+            {sessionId ? "New Session" : "Start Session"}
+          </button>
+          {sessionId && (
+            <button
+              onClick={clearSession}
+              className="bg-red-600 text-white px-4 py-2 rounded-lg"
+            >
+              Clear Session
+            </button>
+          )}
         </div>
-
-        {/* Generate Button */}
-        <RainbowButton
-          variant="outline"
-          onClick={handleGenerate}
-          disabled={loading}
-        >
-          {loading ? "Generating..." : "Generate GTM Strategy"}
-        </RainbowButton>
 
         {error && <p className="text-red-500 font-medium">{error}</p>}
 
-        {/* Display Results */}
-        {result && (
-          <div className="mt-10 space-y-6">
-            <h2 className="text-2xl font-semibold">🚀 Your GTM Strategy</h2>
-            <div className="border p-4 rounded-md shadow-sm bg-white space-y-4">
-              <p><strong>Strategy Overview:</strong> {result.strategy_overview}</p>
-              <p><strong>Market Analysis:</strong> {result.market_analysis}</p>
-              <p><strong>Value Proposition:</strong> {result.value_proposition}</p>
-
-              <div>
-                <strong>Customer Profiles:</strong>
-                <ul className="list-disc list-inside">
-                  {result.customer_profiles.map((profile, idx) => (
-                    <li key={idx}>{profile}</li>
-                  ))}
-                </ul>
+        {/* Chat Window */}
+        {sessionId && (
+          <div className="mt-8 border rounded-lg p-4 bg-white opacity-30 dark:bg-gray-900 h-[400px] overflow-y-auto">
+            {messages.length === 0 && (
+              <p className="text-gray-500 text-center">
+                Ask your first question to get started...
+              </p>
+            )}
+            {messages.map((msg, idx) => (
+              <div
+                key={idx}
+                className={`mb-4 ${
+                  msg.role === "user" ? "text-right" : "text-left"
+                }`}
+              >
+                <span
+                  className={`inline-block px-3 py-2 rounded-lg ${
+                    msg.role === "user"
+                      ? "bg-blue-500 text-white"
+                      : "bg-gray-200 dark:bg-gray-700 dark:text-white"
+                  }`}
+                >
+                  {msg.text}
+                </span>
               </div>
+            ))}
+          </div>
+        )}
 
-              <div>
-                <strong>Acquisition Channels:</strong>
-                <ul className="list-disc list-inside">
-                  {result.acquisition_channels.map((channel, idx) => (
-                    <li key={idx}>{channel}</li>
-                  ))}
-                </ul>
-              </div>
-
-              <p><strong>Outreach Plan:</strong> {result.outreach_plan}</p>
-
-              <div>
-                <strong>Growth Initiatives:</strong>
-                <ul className="list-disc list-inside">
-                  {result.growth_initiatives.map((initiative, idx) => (
-                    <li key={idx}>{initiative}</li>
-                  ))}
-                </ul>
-              </div>
-
-              <p><strong>Optimization Tips:</strong> {result.optimization_tips}</p>
-            </div>
+        {/* Message Input */}
+        {sessionId && (
+          <div className="flex gap-2 mt-4">
+            <input
+              type="text"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              className="flex-grow p-3 border rounded-md dark:bg-gray-800 dark:text-white"
+              placeholder="Type your message..."
+              onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+            />
+            <RainbowButton onClick={sendMessage} className="h-12" disabled={loading}>
+              {loading ? "Sending..." : "Send"}
+            </RainbowButton>
           </div>
         )}
       </div>

@@ -9,7 +9,7 @@ import VantaFog from "@/components/VantaFog";
 import { AuroraText } from "@/components/magicui/aurora-text";
 import Link from "next/link";
 import { ShimmerButton } from "@/components/magicui/shimmer-button";
-import gtmIllustration from "../../public/images/2df63f_cf537ca0b8254df79a53dae712b84510~mv2.avif";
+import dietitianIllustration from "../../public/images/rayia-soderberg-t9M_Scl7xdg-unsplash.jpg";
 import { CardContent, CardHeader } from "@/components/ui/card";
 import { MagicCard } from "@/components/magicui/magic-card";
 import profile from '../../public/images/profile.jpg'
@@ -23,36 +23,37 @@ import { Marquee } from "@/components/magicui/marquee";
 
 const reviews = [
     {
-        name: "Arjun Malhotra",
-        username: "@arjun_founder",
-        body: "Entrepreneur Copilot helped me validate my startup idea and build a go-to-market plan in under an hour. Absolute game-changer for solo founders!"
+        name: "Riya Sharma",
+        username: "@riya_fitness",
+        body: "The AI Dietitian helped me create a personalized meal plan that fits my vegetarian lifestyle and fitness goals perfectly."
     },
     {
-        name: "Neha Gupta",
-        username: "@neha_g",
-        body: "The AI-driven customer segmentation was spot-on. We discovered niche audiences we had completely overlooked."
+        name: "Amit Verma",
+        username: "@amitv_weightloss",
+        body: "I lost 7 kilos in 2 months without feeling starved. The portion control tips and snack suggestions were spot-on."
     },
     {
-        name: "Vikram Rao",
-        username: "@vikram_startup",
-        body: "Instead of spending weeks on market research, I had actionable insights and channel strategies ready in a single session."
+        name: "Priya Menon",
+        username: "@priya_health",
+        body: "Instead of spending hours researching diets online, I had a complete, balanced plan ready in minutes."
     },
     {
-        name: "Sofia Khan",
-        username: "@sofia_k",
-        body: "We pivoted our product positioning based on the competitive analysis from Entrepreneur Copilot — and saw our conversions double."
+        name: "Rahul Khanna",
+        username: "@rahulk_runner",
+        body: "The AI tracked my macros and adjusted my meals automatically when I increased my training intensity."
     },
     {
-        name: "Karan Patel",
-        username: "@karanp_growth",
-        body: "The outreach and content suggestions saved our team days of brainstorming. It felt like having a full-time GTM strategist in-house."
+        name: "Ananya Gupta",
+        username: "@ananya_g",
+        body: "It suggested healthy alternatives to my favorite dishes — now I enjoy my meals guilt-free."
     },
     {
-        name: "Emily Chen",
-        username: "@emily_builds",
-        body: "As a first-time founder, I had no idea where to start. Copilot walked me through every step and gave me the confidence to launch."
+        name: "Sneha Iyer",
+        username: "@sneha_fitnessjourney",
+        body: "As someone with PCOS, I finally found a diet plan tailored to my condition. My energy levels have improved dramatically."
     }
 ];
+
 
 
 const firstRow = reviews.slice(0, reviews.length / 2);
@@ -101,36 +102,37 @@ const ReviewCard = ({
 
 const steps = [
     {
-        title: "Step 1: Describe Your Startup Idea",
+        title: "Step 1: Share Your Health Goals",
         description:
-            "Begin by sharing your business concept, target market, and current stage. The Copilot uses this to tailor a GTM strategy specifically for you."
+            "Tell the AI Dietitian about your fitness objectives, medical conditions, allergies, and lifestyle to create a personalized nutrition plan."
     },
     {
-        title: "Step 2: Analyze Market & Competition",
+        title: "Step 2: Analyze Dietary Needs",
         description:
-            "The AI scans real-time market data, trends, and competitors to reveal gaps, opportunities, and positioning angles."
+            "The AI evaluates your calorie requirements, macro ratios, and nutrient needs based on your body data and activity level."
     },
     {
-        title: "Step 3: Define Ideal Customer Profiles",
+        title: "Step 3: Get a Customized Meal Plan",
         description:
-            "Get precise audience segments based on demographics, behavior, and buying patterns — so your targeting is laser-focused."
+            "Receive daily or weekly meal recommendations with portion sizes, cooking instructions, and healthy substitutions."
     },
     {
-        title: "Step 4: Identify Core Value Proposition",
+        title: "Step 4: Track Your Food Intake",
         description:
-            "Clarify your unique selling points and messaging that will resonate most with your chosen audience."
+            "Log your meals manually or via integrations, and the AI updates your nutrition status in real-time."
     },
     {
-        title: "Step 5: Build Your Acquisition Plan",
+        title: "Step 5: Monitor Progress & Adjust",
         description:
-            "Receive actionable recommendations for channels, partnerships, and campaigns to drive awareness and conversions."
+            "The AI reviews your weight, energy, and overall health changes, adjusting your plan for maximum results."
     },
     {
-        title: "Step 6: Launch & Track Progress",
+        title: "Step 6: Stay Motivated with Tips",
         description:
-            "Execute your GTM strategy with built-in progress tracking, automated feedback, and continuous optimization suggestions."
+            "Get science-backed tips, recipe ideas, and reminders to help you stay consistent and achieve your health goals."
     }
 ];
+
 
 
 export default function Home() {
@@ -138,7 +140,7 @@ export default function Home() {
     return (
         <main className="mx-auto">
             <VantaFog />
-           <section className="mt-20 px-4 md:px-36 flex flex-col justify-center items-center text-center">
+          <section className="mt-20 px-4 md:px-36 flex flex-col justify-center items-center text-center">
     <div className="group mb-5 relative mx-auto flex items-center justify-center rounded-full px-4 py-1.5 shadow-[inset_0_-8px_10px_#8fdfff1f] transition-shadow duration-500 ease-out hover:shadow-[inset_0_-5px_10px_#8fdfff3f]">
         <span
             className={cn(
@@ -153,33 +155,37 @@ export default function Home() {
                 WebkitClipPath: "padding-box",
             }}
         />
-        🚀
+        🥗
         <hr className="mx-2 h-4 w-px shrink-0 bg-neutral-500" />
         <AnimatedGradientText className="text-sm font-medium">
-            AI-Powered GTM Strategy Builder for Startup Founders
+            AI-Powered Dietitian & Nutrition Coach
         </AnimatedGradientText>
         <ChevronRight className="ml-1 size-4 stroke-neutral-500 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
     </div>
 
     <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-tight text-primary mb-6">
-        Launch Your Startup <AuroraText>Faster & Smarter</AuroraText>  
-        with AI-Driven Go-To-Market Strategies
+        Eat <AuroraText>Smarter & Healthier</AuroraText>  {" "}
+        with Your Personal AI Dietitian
     </h1>
 
     <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-8">
-        Instantly generate, refine, and execute a robust GTM plan tailored to your business idea — from market analysis and ideal customer profiles to acquisition channels and growth initiatives.
+        Get a personalized meal plan, nutrition advice, and real-time dietary tracking — 
+        tailored to your health goals, body needs, and lifestyle.  
+        Whether you want to lose weight, gain muscle, or just eat better, 
+        your AI Dietitian is here 24/7.
     </p>
 
     <div className="">
         <Link href="/search">
             <ShimmerButton className="shadow-2xl">
                 <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg">
-                    Build My GTM Plan
+                    Get My Nutrition Plan
                 </span>
             </ShimmerButton>
         </Link>
     </div>
 </section>
+
 
 
             <section className="pt-20 lg:pt-32 pb-10 px-4 md:px-36 mx-auto">
@@ -212,19 +218,20 @@ export default function Home() {
                 </div>
             </section>
 
-          <section className="flex mt-10 flex-col md:flex-row items-center justify-between px-4 md:px-36 py-12">
+         <section className="flex mt-10 flex-col md:flex-row items-center justify-between px-4 md:px-36 py-12">
     {/* Text Section */}
     <div className="md:w-1/2 text-center md:text-left space-y-4 order-2 md:order-1">
         <h2 className="text-3xl md:text-5xl font-bold text-primary">
-            Build and Launch Your Go-To-Market Strategy — Powered by AI.
+            Your Personal AI Dietitian — Tailored Nutrition Plans for You.
         </h2>
         <p className="text-lg text-muted-foreground">
-            Entrepreneur Copilot helps you analyze your market, define your ideal customer, and create a step-by-step GTM plan — so you can launch faster, smarter, and with higher ROI.
+            AI Dietitian Agent analyzes your lifestyle, health goals, and dietary preferences to create
+            personalized meal plans, track your nutrition, and help you stay on track for a healthier you.
         </p>
         <Link href="/search">
             <ShimmerButton className="shadow-2xl">
                 <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg">
-                    Build My GTM Plan
+                    Get My Personalized Plan
                 </span>
             </ShimmerButton>
         </Link>
@@ -233,8 +240,8 @@ export default function Home() {
     {/* Image Section */}
     <div className="md:w-1/2 mt-10 md:mt-0 order-1 md:order-2 flex justify-center">
         <Image
-            src={gtmIllustration} // Replace with your GTM strategy illustration path
-            alt="AI-Powered Go-To-Market Strategy"
+            src={dietitianIllustration} // Replace with your AI Dietitian illustration path
+            alt="AI Dietitian Agent"
             className="w-full max-w-md h-96 object-cover"
             width={10}
             height={10}
@@ -242,6 +249,7 @@ export default function Home() {
         />
     </div>
 </section>
+
 
 
             <section className="mx-4 mt-20 md:mx-36">
@@ -259,7 +267,7 @@ export default function Home() {
                 </div>
             </section>
 
-            <section className="px-4 md:px-36 mt-20">
+           <section className="px-4 md:px-36 mt-20">
     <Accordion
         type="single"
         collapsible
@@ -270,11 +278,11 @@ export default function Home() {
 
         <AccordionItem value="item-1">
             <AccordionTrigger>
-                1. What is Entrepreneur Copilot?
+                1. What is the AI Dietitian Agent?
             </AccordionTrigger>
             <AccordionContent className="flex flex-col gap-4 text-balance">
                 <p>
-                    Entrepreneur Copilot is an AI-powered platform that helps startup founders instantly create, refine, and execute robust go-to-market (GTM) strategies. It analyzes your idea, market, and target audience to deliver a personalized plan for launching and scaling successfully.
+                    The AI Dietitian Agent is a smart, AI-powered nutrition assistant that creates personalized meal plans, tracks your dietary habits, and helps you reach your health and wellness goals.
                 </p>
             </AccordionContent>
         </AccordionItem>
@@ -285,73 +293,73 @@ export default function Home() {
             </AccordionTrigger>
             <AccordionContent className="flex flex-col gap-4 text-balance">
                 <p>
-                    Simply describe your startup idea and industry. The platform uses AI and real-time market data to recommend customer profiles, competitive positioning, acquisition strategies, and an actionable GTM roadmap tailored to your business.
+                    Simply share your health goals, dietary preferences, and lifestyle details. The AI then analyzes your input to generate tailored meal plans, nutritional tips, and daily progress tracking.
                 </p>
             </AccordionContent>
         </AccordionItem>
 
         <AccordionItem value="item-3">
             <AccordionTrigger>
-                3. What kind of businesses can use it?
+                3. Who can use it?
             </AccordionTrigger>
             <AccordionContent className="flex flex-col gap-4 text-balance">
                 <p>
-                    Entrepreneur Copilot works for solo founders, early-stage startups, accelerators, incubators, and even established businesses entering new markets or pivoting their GTM approach.
+                    Anyone looking to improve their diet — whether you want to lose weight, gain muscle, manage a health condition, or simply eat healthier — can benefit from the AI Dietitian Agent.
                 </p>
             </AccordionContent>
         </AccordionItem>
 
         <AccordionItem value="item-4">
             <AccordionTrigger>
-                4. Does it use real market data?
+                4. Does it consider medical conditions or allergies?
             </AccordionTrigger>
             <AccordionContent className="flex flex-col gap-4 text-balance">
                 <p>
-                    Yes. The platform integrates real-time market insights, industry trends, and competitive data to ensure your GTM strategy reflects the most up-to-date opportunities and challenges.
+                    Yes. You can specify allergies, intolerances, and medical conditions like diabetes or high blood pressure, and the AI will adapt your plan accordingly.
                 </p>
             </AccordionContent>
         </AccordionItem>
 
         <AccordionItem value="item-5">
             <AccordionTrigger>
-                5. Can it help with customer targeting?
+                5. Can it track my daily food intake?
             </AccordionTrigger>
             <AccordionContent className="flex flex-col gap-4 text-balance">
                 <p>
-                    Absolutely. Entrepreneur Copilot recommends detailed ideal customer profiles (ICPs) and segments based on demographics, behavior, and purchase patterns, so your outreach is focused and effective.
+                    Absolutely. You can log your meals, and the AI will provide instant feedback on calories, macronutrients, and micronutrients — helping you stay aligned with your goals.
                 </p>
             </AccordionContent>
         </AccordionItem>
 
         <AccordionItem value="item-6">
             <AccordionTrigger>
-                6. Does it suggest acquisition and growth strategies?
+                6. Does it provide grocery lists?
             </AccordionTrigger>
             <AccordionContent className="flex flex-col gap-4 text-balance">
                 <p>
-                    Yes. The platform generates channel recommendations, outreach ideas, content strategies, and growth initiatives, so you have a clear execution plan for acquiring and retaining customers.
+                    Yes. Along with meal plans, you’ll get smart grocery lists to make shopping easier and reduce food waste.
                 </p>
             </AccordionContent>
         </AccordionItem>
 
         <AccordionItem value="item-7">
             <AccordionTrigger>
-                7. Can it track my GTM progress?
+                7. Can it adjust my plan if my goals change?
             </AccordionTrigger>
             <AccordionContent className="flex flex-col gap-4 text-balance">
                 <p>
-                    Yes. You can track execution milestones, measure results, and receive AI-driven optimization tips to adapt your GTM strategy as you go.
+                    Yes. Your plan can be updated anytime to match new goals, preferences, or lifestyle changes — ensuring it always fits your needs.
                 </p>
             </AccordionContent>
         </AccordionItem>
 
         <AccordionItem value="item-8">
             <AccordionTrigger>
-                8. Is Entrepreneur Copilot only for tech startups?
+                8. Does it replace a real dietitian?
             </AccordionTrigger>
             <AccordionContent className="flex flex-col gap-4 text-balance">
                 <p>
-                    Not at all. It works for startups and businesses in any industry — from SaaS and e-commerce to manufacturing, services, and offline businesses — as long as you need a GTM plan.
+                    The AI Dietitian Agent provides expert-backed nutritional guidance, but it’s not a substitute for medical advice from a qualified healthcare professional.
                 </p>
             </AccordionContent>
         </AccordionItem>
@@ -362,12 +370,13 @@ export default function Home() {
             </AccordionTrigger>
             <AccordionContent className="flex flex-col gap-4 text-balance">
                 <p>
-                    Core features like idea analysis and basic GTM planning are free. Advanced features — such as detailed market reports, custom acquisition plans, and progress tracking — may require a paid subscription.
+                    Yes. Basic meal planning and tracking features are free. Premium features, such as advanced nutrition analysis and custom recipe generation, may require a subscription.
                 </p>
             </AccordionContent>
         </AccordionItem>
     </Accordion>
 </section>
+
 
         </main>
     );

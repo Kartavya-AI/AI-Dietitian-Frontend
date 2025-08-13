@@ -21,8 +21,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Entrepreneur Platform",
-  description: " Your AI-powered GTM strategist — helping founders analyze markets, define customer profiles, craft positioning, and execute data-driven go-to-market plans for faster, smarter startup launches.",
+  title: "AI Dietitian Agent",
+  description: "Your AI-powered personal nutritionist — helping you create customized meal plans, track your diet, and achieve your health goals with smart, science-based guidance.",
 };
 
 export default function RootLayout({
