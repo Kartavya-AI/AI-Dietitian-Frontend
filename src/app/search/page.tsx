@@ -98,7 +98,7 @@ export default function DietitianChatPage() {
 
         {/* Chat Window */}
         {sessionId && (
-          <div className="mt-8 border rounded-lg p-4 bg-white opacity-30 dark:bg-gray-900 h-[400px] overflow-y-auto">
+          <div className="mt-8 border rounded-lg p-4 bg-white  dark:bg-gray-900 h-[400px] overflow-y-auto">
             {messages.length === 0 && (
               <p className="text-gray-500 text-center">
                 Ask your first question to get started...
